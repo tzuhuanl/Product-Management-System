@@ -65,12 +65,12 @@
   <tr>
     <td align="center" width="50%">
       <p><b>H2 Database Record</b></p>
-      <img src="img.png" width="400" alt="H2 Database Record"><br>
+      <img src="img.png" height="250" style="max-width: 100%; object-fit: contain;" alt="H2 Database Record"><br>
       <em>(Successfully inserted data into H2 database)</em>
     </td>
     <td align="center" width="50%">
       <p><b>Exception Handling (404)</b></p>
-      <img src="img_1.png" width="400" alt="Postman 404 Test"><br>
+      <img src="img_1.png" height="250" style="max-width: 100%; object-fit: contain;" alt="Postman 404 Test"><br>
       <em>(Exception handling verified: returns 404 Not Found)</em>
     </td>
   </tr>
