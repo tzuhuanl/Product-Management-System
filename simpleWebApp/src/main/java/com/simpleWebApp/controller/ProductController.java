@@ -2,6 +2,7 @@ package com.simpleWebApp.controller;
 
 import com.simpleWebApp.model.Product;
 import com.simpleWebApp.service.ProductService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,11 @@ public class ProductController {
 
     @Autowired
     ProductService service;
+
+    @RequestMapping("/")
+    public String getHomepage(HttpServletRequest request){
+        return "This is the homepage." + request.getSession().getId();
+    }
 
     @GetMapping("/products")
     public List<Product> getProducts(){
