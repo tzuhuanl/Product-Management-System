@@ -40,7 +40,7 @@
       <td>200 OK / 404</td>
     </tr>
     <tr>
-      <td><b><code>POST</code></b></td>
+      <td><code>POST</code></td>
       <td><code>/products</code></td>
       <td>Add a new product</td>
       <td>201 Created</td>
@@ -82,7 +82,8 @@
 <h2>How to Run</h2>
 
 <h3>1. Clone the repository</h3>
-<pre><code>git clone &lt;YOUR_GITHUB_REPO_URL&gt;</code></pre>
+<pre><code>git clone https://github.com/tzuhuanl/Product-Management-System.git</code></pre>
+
 
 <h3>2. Run the application</h3>
 <p>Navigate to the project directory and execute:</p>
