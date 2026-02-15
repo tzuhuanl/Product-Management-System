@@ -5,6 +5,8 @@ import com.simpleWebApp.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,13 +19,19 @@ public class ProductController {
 
     @RequestMapping("/")
     public String getHomepage(HttpServletRequest request){
-        return "This is the homepage." + request.getSession().getId();
+        return "This is the homepage. Session id: " + request.getSession().getId();
     }
 
     @GetMapping("/products")
     public List<Product> getProducts(){
         System.out.println("Someone printed the whole list of products.");
         return service.getProductList();
+    }
+
+    @GetMapping("/csrf-token")
+    public CsrfToken getCsrfToken(CsrfToken token){
+
+        return token;
     }
 
     @GetMapping("/products/{prodId}")
@@ -34,9 +42,11 @@ public class ProductController {
 
     @PostMapping("/products")
     @ResponseStatus(HttpStatus.CREATED)
-    public void addProduct(@RequestBody Product product){
-        System.out.println("Someone added a product.");
-        service.addProduct(product);
+    public void addProduct(@RequestBody Product product, Authentication authentication){
+
+        String username = authentication.getName();
+        System.out.println("User " + username  + " added a product.");
+        service.addProduct(product, username);
     }
 
     @PutMapping("/products")
