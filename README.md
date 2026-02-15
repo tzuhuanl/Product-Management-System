@@ -12,6 +12,7 @@
   <li><b>Spring Boot 3</b> (Web, Data JPA, Security)</li>
   <li><b>Spring Security</b> (Authentication & Authorization)</li>
   <li><b>MySQL</b> (Production-ready Database) / <b>H2</b> (In-memory testing)</li>
+  <li><b>Postman (API testing)</b></li>
   <li><b>Spring Data JPA</b> (ORM & Repository Pattern)</li>
   <li><b>Lombok</b> (Boilerplate reduction)</li>
   <li><b>Maven</b> (Dependency Management)</li>
