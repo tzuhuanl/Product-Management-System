@@ -12,6 +12,7 @@
   <li><b>Spring Boot 3</b></li>
   <li><b>Spring Data JPA</b> (Database abstraction)</li>
   <li><b>H2 Database</b> (In-memory development database)</li>
+  <li><b>Postman </b>(API testing)</li>
   <li><b>Lombok</b> (To reduce boilerplate code)</li>
   <li><b>Maven</b> (Project management and build tool)</li>
 </ul>
