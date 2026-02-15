@@ -1,7 +1,7 @@
-<h1 align="center">Simple Web App - Product Management System</h1>
+<h1 align="center">Secure Product Management System</h1>
 
 <p align="center">
-  A RESTful API project built with <b>Spring Boot</b>, implementing full CRUD (Create, Read, Update, Delete) functionality for product management, with data persistence integrated via H2 database.
+  A RESTful API project built with <b>Spring Boot 3</b>. This application goes beyond basic CRUD by implementing <b>Spring Security</b> for authentication, <b>MySQL</b> for persistent data storage, and establishes a relational mapping between Users and Products.
 </p>
 
 <hr>
@@ -9,96 +9,116 @@
 <h2>Tech Stack</h2>
 <ul>
   <li><b>Java 21</b></li>
-  <li><b>Spring Boot 3</b></li>
-  <li><b>Spring Data JPA</b> (Database abstraction)</li>
-  <li><b>H2 Database</b> (In-memory development database)</li>
-  <li><b>Lombok</b> (To reduce boilerplate code)</li>
-  <li><b>Maven</b> (Project management and build tool)</li>
+  <li><b>Spring Boot 3</b> (Web, Data JPA, Security)</li>
+  <li><b>Spring Security</b> (Authentication & Authorization)</li>
+  <li><b>MySQL</b> (Production-ready Database) / <b>H2</b> (In-memory testing)</li>
+  <li><b>Spring Data JPA</b> (ORM & Repository Pattern)</li>
+  <li><b>Lombok</b> (Boilerplate reduction)</li>
+  <li><b>Maven</b> (Dependency Management)</li>
+</ul>
+
+<h2>Key Features</h2>
+<ul>
+  <li><b>User Management:</b> User registration and password storage.</li>
+  <li><b>Authentication:</b> Secure login via Basic Auth or Form Login.</li>
+  <li><b>Product Management:</b> Full CRUD operations for products.</li>
+  <li><b>Data Relationship:</b> One-to-Many relationship (Users own Products). When a product is added, it is automatically linked to the logged-in user.</li>
+  <li><b>Security:</b> CSRF protection (configurable) and authenticated endpoints.</li>
+  <li><b>Exception Handling:</b> Custom error handling for resource not found (404).</li>
 </ul>
 
 <h2>API Endpoints</h2>
+<p><i>Note: Most endpoints require Basic Authentication or a valid Session.</i></p>
+
 <table width="100%">
   <thead>
     <tr>
       <th align="left">HTTP Method</th>
       <th align="left">Path</th>
       <th align="left">Description</th>
-      <th align="left">Expected Status</th>
+      <th align="left">Auth Required</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <td><code>POST</code></td>
+      <td><code>/register</code></td>
+      <td>Register a new user</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td><code>GET</code></td>
+      <td><code>/csrf-token</code></td>
+      <td>Get CSRF Token (for testing POST/PUT/DELETE)</td>
+      <td>Yes</td>
+    </tr>
+    <tr>
       <td><code>GET</code></td>
       <td><code>/products</code></td>
       <td>Retrieve all products</td>
-      <td>200 OK</td>
+      <td>Yes</td>
     </tr>
     <tr>
       <td><code>GET</code></td>
       <td><code>/products/{id}</code></td>
       <td>Retrieve a specific product by ID</td>
-      <td>200 OK / 404</td>
+      <td>Yes</td>
     </tr>
     <tr>
       <td><code>POST</code></td>
       <td><code>/products</code></td>
-      <td>Add a new product</td>
-      <td>201 Created</td>
+      <td>Add a new product (Linked to current User)</td>
+      <td>Yes</td>
     </tr>
     <tr>
       <td><code>PUT</code></td>
       <td><code>/products</code></td>
       <td>Update an existing product</td>
-      <td>200 OK</td>
+      <td>Yes</td>
     </tr>
     <tr>
       <td><code>DELETE</code></td>
       <td><code>/products/{id}</code></td>
       <td>Delete a specific product</td>
-      <td>200 OK</td>
+      <td>Yes</td>
     </tr>
   </tbody>
 </table>
 
-<h2>Demo Screenshots</h2>
-<table border="0" width="100%" style="table-layout: fixed;">
-  <tr>
-    <td align="center" valign="top">
-      <p><b>H2 Database Record</b></p>
-      <img src="img.png" height="250" style="max-width: 100%; object-fit: contain;" alt="H2 Database Record">
-      <br>
-      <small><em>(Successfully inserted data into H2 database)</em></small>
-    </td>
-    <td align="center" valign="top">
-      <p><b>Exception Handling (404)</b></p>
-      <img src="img_1.png" height="250" style="max-width: 100%; object-fit: contain;" alt="Postman 404 Test">
-      <br>
-      <small><em>(Exception handling verified: returns 404 Not Found)</em></small>
-    </td>
-  </tr>
-</table>
+<h2>Database Configuration</h2>
 
+<p>This project is configured to use <b>MySQL</b> by default. You need to update <code>src/main/resources/application.properties</code> with your database credentials.</p>
+
+<h3>1. MySQL Setup</h3>
+<p>Create a database named <code>userdetails</code> (or update the URL in properties):</p>
+<pre><code>CREATE DATABASE userdetails;</code></pre>
+
+<p>Update <code>application.properties</code>:</p>
+<pre><code>spring.datasource.url=jdbc:mysql://localhost:3306/userdetails
+spring.datasource.username=YOUR_USERNAME
+spring.datasource.password=YOUR_PASSWORD
+spring.jpa.hibernate.ddl-auto=update</code></pre>
+
+<h3>2. (Optional) H2 Database</h3>
+<p>To switch back to H2, comment out the MySQL section in <code>application.properties</code> and uncomment the H2 section in <code>application-h2.properties</code>.</p>
 
 <h2>How to Run</h2>
 
 <h3>1. Clone the repository</h3>
 <pre><code>git clone https://github.com/tzuhuanl/Product-Management-System.git</code></pre>
 
-
 <h3>2. Run the application</h3>
-<p>Navigate to the project directory and execute:</p>
 <pre><code>mvn spring-boot:run</code></pre>
 
-<h3>3. Access H2 Console</h3>
+<h3>3. Testing with Postman</h3>
 <ul>
-  <li><b>URL:</b> <code>http://localhost:8080/h2-console</code></li>
-  <li><b>JDBC URL:</b> <code>jdbc:h2:mem:testdb</code></li>
-  <li><b>User:</b> <code>sa</code> / <b>Password:</b> <code>12345</code></li>
+  <li><b>Register:</b> Send a POST to <code>/register</code> with JSON body <code>{"username": "test", "password": "123"}</code>.</li>
+  <li><b>Login/Access:</b> In Postman, go to the <b>Authorization</b> tab, select <b>Basic Auth</b>, and enter your registered username and password.</li>
 </ul>
 
 <h2>Future Enhancements</h2>
 <ul>
-  <li>Implement Spring Security for API authentication.</li>
+  <li>Implement <b>JWT (JSON Web Token)</b> for stateless authentication.</li>
+  <li>Add role-based authorization (Admin vs User).</li>
   <li>Integrate Swagger (SpringDoc) for interactive API documentation.</li>
-  <li>Add comprehensive Unit Tests using JUnit 5 and Mockito.</li>
 </ul>
