@@ -32,7 +32,10 @@ public class SecurityConfig {
 
         return http
             .csrf(customizer -> customizer.disable())
-            .authorizeHttpRequests(request -> request.anyRequest().authenticated()) // no one should access the page without authentication
+            .authorizeHttpRequests(request -> request
+                    .requestMatchers("/register").permitAll()
+                    .anyRequest().authenticated()
+            )
             .formLogin(Customizer.withDefaults()) // with a page for users to type in the username and password
             .httpBasic(Customizer.withDefaults()) // for postman
             .build();
