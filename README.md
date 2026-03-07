@@ -127,6 +127,5 @@ spring.jpa.hibernate.ddl-auto=update</code></pre>
 <ul>
   <li>Implement Role-Based Access Control (e.g., Admin vs Standard User).</li>
   <li>Add refresh tokens for extended sessions without requiring re-login.</li>
-  <li>Integrate Swagger (SpringDoc) for interactive API documentation.</li>
   <li>Dockerize the application and database using <code>docker-compose</code>.</li>
 </ul>

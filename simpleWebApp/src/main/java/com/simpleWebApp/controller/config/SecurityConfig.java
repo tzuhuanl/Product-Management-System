@@ -40,12 +40,12 @@ public class SecurityConfig {
         return http
             .csrf(customizer -> customizer.disable())
             .authorizeHttpRequests(request -> request
-                    .requestMatchers("/register", "/login")
+                    .requestMatchers("/register", "/login", "/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html")
                     .permitAll()
                     .anyRequest()
                     .authenticated()
             )
-            .httpBasic(Customizer.withDefaults()) // for postman
+            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))// for postman
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
             .build();
 
