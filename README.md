@@ -119,5 +119,5 @@ mvn spring-boot:run</code></pre>
 <h2>Future Enhancements</h2>
 <ul>
   <li>Implement Role-Based Access Control (e.g., Admin vs Standard User).</li>
-  <li>Dockerize the application and database using <code>docker-compose</code>.</li>
+  <li>Dockerize the application.</li>
 </ul>
