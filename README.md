@@ -113,7 +113,7 @@ mvn spring-boot:run</code></pre>
   <li>Open your browser and navigate to: <a href="http://localhost:8080/swagger-ui/index.html">http://localhost:8080/swagger-ui/index.html</a></li>
   <li><b>Register:</b> Expand the <code>POST /register</code> endpoint, click <b>Try it out</b>, enter a username and password in the Request body, and click <b>Execute</b>.</li>
   <li><b>Login:</b> Expand the <code>POST /login</code> endpoint, click <b>Try it out</b>, enter your registered credentials, and click <b>Execute</b>. Copy the JWT token string from the Response body.</li>
-  <li><b>Authorize:</b> Scroll to the top of the Swagger page and click the green <b>Authorize 🔓</b> button. Paste your copied JWT token into the <code>Value</code> field and click <b>Authorize</b>.</li>
+  <li><b>Authorize:</b> Scroll to the top of the Swagger page and click the green <b>Authorize</b> button. Paste your copied JWT token into the <code>Value</code> field and click <b>Authorize</b>.</li>
   <li><b>Test Protected Endpoints:</b> You can now test any of the <code>/products</code> endpoints. Swagger will automatically attach your JWT token to the request headers!</li>
 </ol>
 <h2>Future Enhancements</h2>
